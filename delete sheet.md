@@ -1,15 +1,3 @@
-# Delete_EXCEL_SpSheet
-delete special sheet
-
-将待处理的表格放入process data文件夹下
-![ex2](ex2.png)
-
-![ex1](ex1.png)
-
-每个表格中均存在名为`Test`的Sheet名
-
-填好路径运行即可
-
 ## 环境
 - 编辑器：vscode
 - 编译器：python3.10.4
@@ -34,15 +22,9 @@ import os
 
 
 ```python
-# 替换路径
-path=r''
-# 替换要删除的页面名字
-sheet_name = 'Test'
-
-
 filelist = []
-
-for root, dirs, files in os.walk(path, topdown=False):
+sheet_name = 'Test'
+for root, dirs, files in os.walk(".", topdown=False):
     for name in files:
         str = os.path.join(root, name)
         if str.split('.')[-1] == 'xlsx':
@@ -82,8 +64,8 @@ for i in range(len(filelist)):
     # 删除目标Sheet
     if sheet_name in workbook:
         worksheet = workbook[sheet_name]
-        workbook.remove(worksheet)
         workbook.save(filelist[i])
+        workbook.remove(worksheet)
         print(filelist[i]+' delete successfully!')
     else:
         print(filelist[i]+'的指定Sheet不存在，故不作处理')
@@ -97,4 +79,4 @@ for i in range(len(filelist)):
     .\process data\1 - 副本 - 副本.xlsx的指定Sheet不存在，故不作处理
     .\process data\1 - 副本.xlsx的指定Sheet不存在，故不作处理
     .\process data\1.xlsx delete successfully!
-
+    

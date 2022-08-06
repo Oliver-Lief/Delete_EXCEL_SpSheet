@@ -1,9 +1,13 @@
 import openpyxl
 import os
 
-filelist = []
+path=r'C:\Users\Oliver_Lief\Desktop\1'
+
 sheet_name = 'Test'
-for root, dirs, files in os.walk(".", topdown=False):
+
+filelist = []
+
+for root, dirs, files in os.walk(path, topdown=False):
     for name in files:
         str = os.path.join(root, name)
         if str.split('.')[-1] == 'xlsx':
